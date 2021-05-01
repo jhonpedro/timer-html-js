@@ -12,35 +12,34 @@
 	$startButton.addEventListener('click', () => {
 		timer = setInterval(() => {
 			// Here is [days, hours, minutes, seconds]
-			var timesArr = $input.value.split(':')
+			var [days, hours, minutes, seconds] = $input.value.split(':')
 
 			// convert everything to integer
-			timesArr[0] = +timesArr[0]
-			timesArr[1] = +timesArr[1]
-			timesArr[2] = +timesArr[2]
-			timesArr[3] = +timesArr[3]
+			days = +days
+			hours = +hours
+			minutes = +minutes
+			seconds = +seconds
 
-			timesArr[3] += 1
+			seconds += 1
 
-			if (timesArr[3] >= 60) {
-				timesArr[2]++
-				timesArr[3] = '0'
+			if (seconds >= 60) {
+				minutes += parseInt(seconds / 60)
+				seconds = parseInt(seconds % 60)
 			}
-			if (timesArr[2] >= 60) {
-				timesArr[1]++
-				timesArr[2] = '0'
+			if (minutes >= 60) {
+				hours += parseInt(minutes / 60)
+				seconds = parseInt(minutes % 60)
 			}
-			if (timesArr[1] >= 24) {
-				timesArr[0]++
-				timesArr[1] = '0'
+			if (hours >= 24) {
+				days += parseInt(hours / 24)
+				seconds = parseInt(hours % 60)
 			}
 
-			var daysFormated = +timesArr[0] >= 10 ? timesArr[0] : `0${timesArr[0]}`
-			var hoursFormated = +timesArr[1] >= 10 ? timesArr[1] : `0${timesArr[1]}`
-			var minutesFormated = +timesArr[2] >= 10 ? timesArr[2] : `0${timesArr[2]}`
-			var secondsFormated = +timesArr[3] >= 10 ? timesArr[3] : `0${timesArr[3]}`
-
-			$input.value = `${daysFormated}:${hoursFormated}:${minutesFormated}:${secondsFormated}`
+			$input.value = `${days >= 10 ? days : `0${days}`}:${
+				hours >= 10 ? hours : `0${hours}`
+			}:${minutes >= 10 ? minutes : `0${minutes}`}:${
+				seconds >= 10 ? seconds : `0${seconds}`
+			}`
 		}, 1000)
 	})
 
