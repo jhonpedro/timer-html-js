@@ -50,9 +50,14 @@ input {
 	padding: 0.3rem;
 	border-radius: 0.6rem;
 	border: 1px solid black;
+	text-align: center;
 }
 
-input {
+button {
+	cursor: pointer;
+}
+
+input[data-js='input'] {
 	outline: none;
 	text-align: center;
 	cursor: not-allowed;
